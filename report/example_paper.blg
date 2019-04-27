@@ -1,0 +1,55 @@
+This is BibTeX, Version 0.99d (TeX Live 2015)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: example_paper.aux
+The style file: icml2019.bst
+Database file #1: example_paper.bib
+Warning--I didn't find a database entry for "langley00"
+Warning--I didn't find a database entry for "anonymous"
+Warning--I didn't find a database entry for "Samuel59"
+Warning--I didn't find a database entry for "kearns89"
+Warning--I didn't find a database entry for "mitchell80"
+Warning--I didn't find a database entry for "MachineLearningI"
+Warning--I didn't find a database entry for "Newell81"
+Warning--I didn't find a database entry for "DudaHart2nd"
+You've used 6 entries,
+            2773 wiz_defined-function locations,
+            644 strings with 6292 characters,
+and the built_in function-call counts, 3210 in all, are:
+= -- 276
+> -- 223
+< -- 4
++ -- 75
+- -- 69
+* -- 278
+:= -- 502
+add.period$ -- 19
+call.type$ -- 6
+change.case$ -- 41
+chr.to.int$ -- 6
+cite$ -- 12
+duplicate$ -- 134
+empty$ -- 234
+format.name$ -- 77
+if$ -- 661
+int.to.chr$ -- 1
+int.to.str$ -- 1
+missing$ -- 6
+newline$ -- 38
+num.names$ -- 24
+pop$ -- 78
+preamble$ -- 1
+purify$ -- 35
+quote$ -- 0
+skip$ -- 110
+stack$ -- 0
+substring$ -- 103
+swap$ -- 17
+text.length$ -- 2
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 66
+warning$ -- 0
+while$ -- 26
+width$ -- 0
+write$ -- 85
+(There were 8 warnings)

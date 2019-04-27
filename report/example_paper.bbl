@@ -1,0 +1,50 @@
+\begin{thebibliography}{6}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Agarwal et~al.(2018)Agarwal, Beygelzimer, Dud{\'\i}k, Langford, and
+  Wallach]{agarwal2018reductions}
+Agarwal, A., Beygelzimer, A., Dud{\'\i}k, M., Langford, J., and Wallach, H.
+\newblock A reductions approach to fair classification.
+\newblock \emph{arXiv preprint arXiv:1803.02453}, 2018.
+
+\bibitem[Huang et~al.(2007)Huang, Chen, and Wang]{huang2007credit}
+Huang, C.-L., Chen, M.-C., and Wang, C.-J.
+\newblock Credit scoring with a data mining approach based on support vector
+  machines.
+\newblock \emph{Expert systems with applications}, 33\penalty0 (4):\penalty0
+  847--856, 2007.
+
+\bibitem[Kohavi(1996)]{kohavi1996scaling}
+Kohavi, R.
+\newblock Scaling up the accuracy of naive-bayes classifiers: A decision-tree
+  hybrid.
+\newblock In \emph{Kdd}, volume~96, pp.\  202--207. Citeseer, 1996.
+
+\bibitem[Poplin et~al.(2018)Poplin, Varadarajan, Blumer, Liu, McConnell,
+  Corrado, Peng, and Webster]{poplin2018prediction}
+Poplin, R., Varadarajan, A.~V., Blumer, K., Liu, Y., McConnell, M.~V., Corrado,
+  G.~S., Peng, L., and Webster, D.~R.
+\newblock Prediction of cardiovascular risk factors from retinal fundus
+  photographs via deep learning.
+\newblock \emph{Nature Biomedical Engineering}, 2\penalty0 (3):\penalty0 158,
+  2018.
+
+\bibitem[Tollenaar \& Van~der Heijden(2013)Tollenaar and Van~der
+  Heijden]{tollenaar2013method}
+Tollenaar, N. and Van~der Heijden, P.
+\newblock Which method predicts recidivism best?: a comparison of statistical,
+  machine learning and data mining predictive models.
+\newblock \emph{Journal of the Royal Statistical Society: Series A (Statistics
+  in Society)}, 176\penalty0 (2):\penalty0 565--584, 2013.
+
+\bibitem[Zafar et~al.(2015)Zafar, Valera, Rodriguez, and
+  Gummadi]{zafar2015fairness}
+Zafar, M.~B., Valera, I., Rodriguez, M.~G., and Gummadi, K.~P.
+\newblock Fairness constraints: Mechanisms for fair classification.
+\newblock \emph{arXiv preprint arXiv:1507.05259}, 2015.
+
+\end{thebibliography}
