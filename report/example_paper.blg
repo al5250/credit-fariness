@@ -11,45 +11,45 @@ Warning--I didn't find a database entry for "mitchell80"
 Warning--I didn't find a database entry for "MachineLearningI"
 Warning--I didn't find a database entry for "Newell81"
 Warning--I didn't find a database entry for "DudaHart2nd"
-You've used 6 entries,
+You've used 8 entries,
             2773 wiz_defined-function locations,
-            644 strings with 6292 characters,
-and the built_in function-call counts, 3210 in all, are:
-= -- 276
-> -- 223
-< -- 4
-+ -- 75
-- -- 69
-* -- 278
-:= -- 502
-add.period$ -- 19
-call.type$ -- 6
-change.case$ -- 41
-chr.to.int$ -- 6
-cite$ -- 12
-duplicate$ -- 134
-empty$ -- 234
-format.name$ -- 77
-if$ -- 661
+            657 strings with 6832 characters,
+and the built_in function-call counts, 4421 in all, are:
+= -- 403
+> -- 265
+< -- 8
++ -- 89
+- -- 81
+* -- 354
+:= -- 660
+add.period$ -- 27
+call.type$ -- 8
+change.case$ -- 51
+chr.to.int$ -- 8
+cite$ -- 16
+duplicate$ -- 201
+empty$ -- 343
+format.name$ -- 95
+if$ -- 947
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 6
-newline$ -- 38
-num.names$ -- 24
-pop$ -- 78
+missing$ -- 8
+newline$ -- 48
+num.names$ -- 32
+pop$ -- 102
 preamble$ -- 1
-purify$ -- 35
+purify$ -- 43
 quote$ -- 0
-skip$ -- 110
+skip$ -- 167
 stack$ -- 0
-substring$ -- 103
-swap$ -- 17
-text.length$ -- 2
+substring$ -- 179
+swap$ -- 40
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 66
+type$ -- 88
 warning$ -- 0
-while$ -- 26
+while$ -- 38
 width$ -- 0
-write$ -- 85
+write$ -- 113
 (There were 8 warnings)

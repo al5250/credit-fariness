@@ -118,7 +118,13 @@ To counter disparate impact, we wish to enforce \emph{demographic parity}, which
 \begin{align}
 p(\hy = 1 \given \bd z = k_1) = p(\hy = 1 \given \bd z = k_2),
 \end{align}  
-where $k_1$ and $k_2$ are different realizations of the random variable $\bd z$.  For example, if $\bd z$ is sex, $k_1$ could be \texttt{Male} and $k_2$ could be \texttt{Female}.  Intuitively, this means that having access to the protected attribute $\bd z$ should not influence the predictions in any way.  
+where $k_1$ and $k_2$ are different realizations of the random variable $\bd z$.  For example, if $\bd z$ is sex, $k_1$ could be \texttt{Male} and $k_2$ could be \texttt{Female}.  Intuitively, this means that only changing the protected attribute $\bd z$ should not influence the predictions in any way.  
+
+Using demographic parity as a definition of machine learning fairness offers some advantages.  First and foremost, there exists legal support for this definition in the United States.  In 1978, four government agencies -- including the EEOC, Department of Labor, Department of Justice, and the Civil Service Commission -- proposed the four-fifths (or 80\%) rule as a benchmark with assessing adverse disparate impact for protected classes \citep{bobko2004four}.  Specifically, these agencies required that
+\begin{align}
+\min \left\{\frac{p(\hy = 1 \given \bd z = k_1)}{p(\hy = 1 \given \bd z = k_2)}, \frac{p(\hy = 1 \given \bd z = k_2)}{p(\hy = 1 \given \bd z = k_1)} \right\} \geq \frac{q}{100}
+\end{align} 
+where $q = 80$ in the legal definition.  Recently, Hu and Chen \yrcite{hu2018short} additionally argue that short-term enforcement of demographic parity has long-term benefits for preventing discrimination against minorities in the labor market.  
 
 \textbf{Paper Deadline:} The deadline for paper submission that is
 advertised on the conference website is strict. If your full,

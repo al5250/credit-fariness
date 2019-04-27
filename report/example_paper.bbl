@@ -1,4 +1,4 @@
-\begin{thebibliography}{6}
+\begin{thebibliography}{8}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -10,6 +10,21 @@
 Agarwal, A., Beygelzimer, A., Dud{\'\i}k, M., Langford, J., and Wallach, H.
 \newblock A reductions approach to fair classification.
 \newblock \emph{arXiv preprint arXiv:1803.02453}, 2018.
+
+\bibitem[Bobko \& Roth(2004)Bobko and Roth]{bobko2004four}
+Bobko, P. and Roth, P.~L.
+\newblock The four-fifths rule for assessing adverse impact: An arithmetic,
+  intuitive, and logical analysis of the rule and implications for future
+  research and practice.
+\newblock In \emph{Research in personnel and human resources management}, pp.\
+  177--198. Emerald Group Publishing Limited, 2004.
+
+\bibitem[Hu \& Chen(2018)Hu and Chen]{hu2018short}
+Hu, L. and Chen, Y.
+\newblock A short-term intervention for long-term fairness in the labor market.
+\newblock In \emph{Proceedings of the 2018 World Wide Web Conference on World
+  Wide Web}, pp.\  1389--1398. International World Wide Web Conferences
+  Steering Committee, 2018.
 
 \bibitem[Huang et~al.(2007)Huang, Chen, and Wang]{huang2007credit}
 Huang, C.-L., Chen, M.-C., and Wang, C.-J.
