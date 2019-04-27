@@ -1,4 +1,4 @@
-\begin{thebibliography}{8}
+\begin{thebibliography}{9}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -18,6 +18,12 @@ Bobko, P. and Roth, P.~L.
   research and practice.
 \newblock In \emph{Research in personnel and human resources management}, pp.\
   177--198. Emerald Group Publishing Limited, 2004.
+
+\bibitem[Goodfellow et~al.(2016)Goodfellow, Bengio, and
+  Courville]{goodfellow2016deep}
+Goodfellow, I., Bengio, Y., and Courville, A.
+\newblock \emph{Deep learning}.
+\newblock MIT press, 2016.
 
 \bibitem[Hu \& Chen(2018)Hu and Chen]{hu2018short}
 Hu, L. and Chen, Y.
