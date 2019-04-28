@@ -101,7 +101,7 @@
 
 Over the past few years, machine learning (ML) and artificial intelligence (AI) have become increasingly more common for high-stakes decision making.  Researchers have proposed machine learning algorithms for applications such as credit scoring \citep{huang2007credit}, personalized medicine \citep{poplin2018prediction}, and redicivism prediction \citep{tollenaar2013method}.  
 
-In light of our increased adoption of ML/AI methods, it is important that we do not allow these technologies to foster unfairness within our society.  Machine learning algorithms fundamentally rely on past data in order to function.   They attempt to generalize patterns found in the data and apply these patterns to make predictions in future scenarios.  However, in certain situations, historical injustices against presently protected subgroups of a population may have led to the recording of biased data.  Natively training a model on this biased data may lead to a biased algorithm that discriminates against these protected subgroups.  Subsequently using this algorithm for high-stakes decision making may lead to further injustices and bias the collection of future data, thereby leading to a dangerous positive feedback loop.  
+In light of our increased adoption of ML/AI methods, it is important that we do not allow these technologies to foster unfairness within our society.  Machine learning algorithms fundamentally rely on past data in order to function.   They attempt to generalize patterns found in the data and apply these patterns to make predictions in future scenarios.  However, in certain situations, historical injustices against presently protected subgroups of a population may have led to the recording of biased data.  Naively training a model on this biased data may lead to a biased algorithm that discriminates against these protected subgroups.  Subsequently using this algorithm for high-stakes decision making may lead to further injustices and bias the collection of future data, thereby leading to a dangerous positive feedback loop.  
 
 Thus, finding ways to enforce fair predictions for machine learning algorithms is a problem of utmost importance.  In this paper, we propose some methods that strive to achieve this goal.  These methods are primarily optimization-based, meaning that they each involve augmenting the objective function of machine learning methods in some manner and can be seen as a form of regularization.  We employ our methods in neural networks, models that have garnered a great deal of popularity in recent years due to empirical success across many domains.  Our empirical results are presented on the \emph{adult income dataset}\footnote{This dataset is publicly available at \url{https://archive.ics.uci.edu/ml/datasets/adult}.}, which was collected from 1994 census data \citep{kohavi1996scaling}.  We show that our proposed approaches can significantly reduce model bias defined in the form of \emph{disparate impact} and uphold desired levels of \emph{demographic parity} without sacrificing a prohibitive amount of accuracy.             
 
@@ -169,12 +169,12 @@ where $\bd \hz = 1 / N \cdot \sum_{n=1}^N \bidx z n$.  Since Zafar et al. \yrcit
 \begin{align}
 \left | \frac{1}{N} \sum_{n=1}^N (\bidx z n - \bd \hz) \cdot \idx d n \right | \leq \bd c,
 \end{align}
-for some constant $\bd c$ corresponding to the level of desired demographic parity.  In our neural network setting, we directly add the empirical covariance as a penalized regularization term to the binary cross entropy objective function of Equation \ref{bce}.  Thus, the full objective function is
+for some constant $\bd c$ corresponding to the level of desired demographic parity.  In our neural network setting, we instead directly add the empirical covariance as a penalized regularization term to the binary cross entropy objective function of Equation \ref{bce}.  Thus, the full objective function is
 \begin{align}
 Q_1 &= \sum_{n=1}^N \idx y n \log \idx \hp n + (1 - \idx y n) \log (1 - \idx \hp n) \\ 
 &\quad + \lambda \cdot \left | \frac{1}{N}  \sum_{n=1}^N (\bidx z n - \bd \hz) \cdot \idx d n \right|, \nonumber
 \end{align}
-where $\lambda$ controls the degree of regularization.  
+where $\lambda$ controls the degree of regularization.  Increasing $\lambda$ will increase the penalty of the covariance and ideally lead to greater demographic parity.  We wish to adjust $\lambda$ so that it is large enough to satisfy fairness constraints, yet small enough to not prohibitively affect classifier accuracy.    
 
 \subsection{Regularizing Representation Space Bias}
 
@@ -194,21 +194,21 @@ If we observe the distributions over estimated probabilities of making over 50K 
 q = \frac{| \mathcal{D}_\text{test}^\texttt{Female} |^{-1} \sum_{n \in \mathcal{D}_\text{test}^\texttt{Female}} \idx \hp n}{| \mathcal{D}_\text{test}^\texttt{Male} |^{-1} \sum_{n \in \mathcal{D}_\text{test}^\texttt{Male}} \idx \hp n}.
 \end{align} 
 
-Thus, this model exhibits significant bias against females, likely because it was trained on a biased dataset.  Thus, it is unsuitable for future high stakes decision-making problems, such as determining how much a female should make or estimating a female's income for loan approval applications.               
+This model exhibits significant bias against females, likely because it was trained on a biased dataset.  Thus, it is unsuitable for use in future high-stakes decision making, such as determining how much a female should make or estimating a female's income for loan approval.               
 
 \begin{figure}[ht]
 \vskip 0.2in
 \begin{center}
 \centerline{\includegraphics[width=\columnwidth]{img/vanilla-bias.pdf}}
-\caption{Historical locations and number of accepted papers for International
-Machine Learning Conferences (ICML 1993 -- ICML 2008) and International
-Workshops on Machine Learning (ML 1988 -- ML 1992). At the time this figure was
-produced, the number of accepted papers for ICML 2008 was unknown and instead
-estimated.}
+\caption{For the vanilla neural network, normalized histograms of estimated probabilities that males (left) and females (right) make over 50K a year.  Dotted black lines indicate the means of each distribution, which is 0.298 for males and 0.120 for females.}
 \label{vanilla-nn}
 \end{center}
 \vskip -0.2in
 \end{figure}
+
+\subsection{Regularizing Decision Boundary Covariance}
+
+\subsection{Regularizing Representation Space Bias}
 
 \section{Discussion and Conclusion}
 
