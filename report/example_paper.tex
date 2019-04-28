@@ -112,7 +112,7 @@ Talk about COMPAS, other work in fairness, etc.
 
 \subsection{Adult Income Dataset}
 
-The adult income dataset \citep{kohavi1996scaling} contains data from $N = 48,842$ respondents to the 1994 United States Census.  Each person $n$ is characterized by $J = 14$ attributes, denoted $\bidx x n = \{\idx[1] x n, \ldots, \idx[J] x n\}$, including education level, occupation type, capital gains, capital losses, and number of hours worked per week.  The goal is to predict a binary variable $\idx y n \in \{0, 1\}$, which indicates whether or not person $n$ makes over \$50,000 a year.
+The adult income dataset \citep{kohavi1996scaling} contains data from $N = 32,561$ respondents to the 1994 United States Census.  Each person $n$ is characterized by $J = 14$ attributes, denoted $\bidx x n = \{\idx[1] x n, \ldots, \idx[J] x n\}$, including education level, occupation type, capital gains, capital losses, and number of hours worked per week.  The goal is to predict a binary variable $\idx y n \in \{0, 1\}$, which indicates whether or not person $n$ makes over \$50,000 a year.
 
 In this case, the protected attributes $\bidx z n$ for person $n$ are their \emph{sex} and their \emph{race}.  Historical inequities have led to groups such as women and African Americans having significantly lower fractions of individuals making over \$50,000 a year.  Using a model naively trained on the adult income dataset for high stakes decision making in the present day -- such as estimating a person's income for loan approval or determining how much to pay a new hire -- may lead to heavily biased results.  Thus, there is motivation to incorporate predictive fairness into the model training process.
 
@@ -120,17 +120,17 @@ In this case, the protected attributes $\bidx z n$ for person $n$ are their \emp
 
 \emph{Disparate impact} is the notion in which a model's biased classification process leads to outcomes that disproportionately hurt (or benefit) people with sensitive attributes.  It was first introduced by Zafar et al.  \yrcite{zafar2015fairness}.  Simply removing the sensitive attributes $\bd z$ from the dataset and training a model on the remaining attributes $\bd x \setminus \bd z$ may still yield biased predictions, because $\bd z$ may be correlated with the remaining subset \citep{agarwal2018reductions}.
 
-To counter disparate impact, we wish to enforce \emph{demographic parity}, which demands that the distribution of scores for any protected classes is the same.  Let $\hy$ be a model's prediction.  Formally, demographic parity is defined as:
+To counter disparate impact, we wish to enforce \emph{demographic parity}, which demands that the distribution of scores for any protected classes is the same.  Let $\hat{p}(y = 1)$ be a model's prediction of the probability of class 1 in binary classification.  Formally, demographic parity is defined as:
 \begin{align}
-p(\hy = 1 \given \bd z = k_1) = p(\hy = 1 \given \bd z = k_2),
+\hp(y = 1 \given \bd z = k_1) = \hp(y = 1 \given \bd z = k_2),
 \end{align}  
 where $k_1$ and $k_2$ are different realizations of the random variable $\bd z$.  For example, if $\bd z$ is sex, $k_1$ could be \texttt{Male} and $k_2$ could be \texttt{Female}.  Intuitively, this means that only changing the protected attribute $\bd z$ should not influence the predictions in any way.  
 
 Using demographic parity as a definition of machine learning fairness offers some advantages.  First and foremost, there exists legal support for this definition in the United States.  In 1978, four government agencies -- including the EEOC, Department of Labor, Department of Justice, and the Civil Service Commission -- proposed the four-fifths (or 80\%) rule as a benchmark with assessing adverse disparate impact for protected classes \citep{bobko2004four}.  Specifically, these agencies required that
 \begin{align}
-\min \left\{\frac{p(\hy = 1 \given \bd z = k_1)}{p(\hy = 1 \given \bd z = k_2)}, \frac{p(\hy = 1 \given \bd z = k_2)}{p(\hy = 1 \given \bd z = k_1)} \right\} \geq \frac{q}{100}
+\min \left\{\frac{\hp(y = 1 \given \bd z = k_1)}{\hp(y = 1 \given \bd z = k_2)}, \frac{\hp(y = 1 \given \bd z = k_2)}{\hp(y = 1 \given \bd z = k_1)} \right\} \geq \frac{q}{100} \label{q-rule}
 \end{align} 
-where $q = 80$ in the legal definition.  Recently, Hu and Chen \yrcite{hu2018short} additionally argue that short-term enforcement of demographic parity has long-term benefits for countering discrimination against minorities in the labor market.  
+where $q = 80$ in the legal definition.  Note that $q = 100$ corresponds to zero disparate impact and complete demographic parity.  Recently, Hu and Chen \yrcite{hu2018short} additionally argue that short-term enforcement of demographic parity has long-term benefits for countering discrimination against minorities in the labor market.  
 
 \section{Methods for Enforcing Demographic Parity}
 We present two optimization-based methods for enforcing demographic parity in neural networks.  
@@ -172,16 +172,43 @@ where $\bd \hz = 1 / N \cdot \sum_{n=1}^N \bidx z n$.  Since Zafar et al. \yrcit
 for some constant $\bd c$ corresponding to the level of desired demographic parity.  In our neural network setting, we directly add the empirical covariance as a penalized regularization term to the binary cross entropy objective function of Equation \ref{bce}.  Thus, the full objective function is
 \begin{align}
 Q_1 &= \sum_{n=1}^N \idx y n \log \idx \hp n + (1 - \idx y n) \log (1 - \idx \hp n) \\ 
-&+ \lambda \cdot \left | \frac{1}{N}  \sum_{n=1}^N (\bidx z n - \bd \hz) \cdot \idx d n \right|, \nonumber
+&\quad + \lambda \cdot \left | \frac{1}{N}  \sum_{n=1}^N (\bidx z n - \bd \hz) \cdot \idx d n \right|, \nonumber
 \end{align}
 where $\lambda$ controls the degree of regularization.  
 
 \subsection{Regularizing Representation Space Bias}
 
 \section{Results}
-Our empirical results are evaluated on the adult income dataset.  We first naively train a vanilla neural network and show how it suffers from disparate impact.  Then, we apply our methods for enforcing demographic parity to exhibit how this disparate impact can be mitigated.  
+Our empirical results are evaluated on the adult income dataset.  We first naively train a vanilla neural network and show how it suffers from disparate impact.  Then, we apply our methods for enforcing demographic parity to exhibit how this disparate impact can be mitigated.  All experiments are implemented using the PyTorch deep learning library \citep{paszke2017pytorch}.  
 
 \subsection{Vanilla Neural Network}
+
+We train a simple neural network with $L = 2$ layers that performs well on the adult income dataset.  The input is $\bd x \setminus \bd z$, the set of all attributes minus sex and race.  The single hidden layer $\bidx h 1$ has 300 hidden units.  We let $\idx f 1$ be the rectified linear (ReLU) function and $\idx f 2$ be the sigmoid function.  Weights and biases $\{\idx W 1, \idx W 2, \idx b 1, \idx b 2\}$ are initialized as $\mathcal{N}(0, 1)$ random variables.  
+
+We divide the dataset of $N = 48,4842$ individuals into a training set $\mathcal{D}_\text{train}$ of $26,048$ people and test set $\mathcal{D}_\text{test}$ of $6,513$ people, which roughly corresponds to an 80\%-20\% split.  The network is trained using the binary cross entropy loss function of Equation \ref{bce} on $\mathcal{D}_\text{train}$.  For optimization, we use the ADAM stochastic optimizer \citep{kingma2014adam} with a minibatch of $1024$ examples.  The network is trained for 20 epochs, which are defined as passes through the entire training set.   
+
+Evaluation is performed on the test set.  Test set accuracy is 85.00\%, which is decent.  However, there are gross violations of demographic parity.  
+
+If we observe the distributions over estimated probabilities of making over 50K divided by sex (i.e. \texttt{Male} vs. \texttt{Female}), we see that there are significant discrepancies.  Figure \ref{vanilla-nn} presents histograms of $\idx \hp n \given \bidx z n = \texttt{Male}$ and $\idx \hp n \given \bidx z n = \texttt{Female}$ for all $n \in \mathcal{D}_\text{test}$.  The shapes are quite different.  Let $\mathcal{D}_\text{test}^\texttt{Male}$ and $\mathcal{D}_\text{test}^\texttt{Female}$ be partitions of $\mathcal{D}_\text{test}$ based on sex.  We see that the largest possible $q$ that satisfies Equation \ref{q-rule} is $q = 40.42\%$, where $q$ is found empirically in this example as 
+\begin{align}
+q = \frac{| \mathcal{D}_\text{test}^\texttt{Female} |^{-1} \sum_{n \in \mathcal{D}_\text{test}^\texttt{Female}} \idx \hp n}{| \mathcal{D}_\text{test}^\texttt{Male} |^{-1} \sum_{n \in \mathcal{D}_\text{test}^\texttt{Male}} \idx \hp n}.
+\end{align} 
+
+Thus, this model exhibits significant bias against females, likely because it was trained on a biased dataset.  Thus, it is unsuitable for future high stakes decision-making problems, such as determining how much a female should make or estimating a female's income for loan approval applications.               
+
+\begin{figure}[ht]
+\vskip 0.2in
+\begin{center}
+\centerline{\includegraphics[width=\columnwidth]{img/vanilla-bias.pdf}}
+\caption{Historical locations and number of accepted papers for International
+Machine Learning Conferences (ICML 1993 -- ICML 2008) and International
+Workshops on Machine Learning (ML 1988 -- ML 1992). At the time this figure was
+produced, the number of accepted papers for ICML 2008 was unknown and instead
+estimated.}
+\label{vanilla-nn}
+\end{center}
+\vskip -0.2in
+\end{figure}
 
 \section{Discussion and Conclusion}
 

@@ -1,4 +1,4 @@
-\begin{thebibliography}{9}
+\begin{thebibliography}{11}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -39,11 +39,24 @@ Huang, C.-L., Chen, M.-C., and Wang, C.-J.
 \newblock \emph{Expert systems with applications}, 33\penalty0 (4):\penalty0
   847--856, 2007.
 
+\bibitem[Kingma \& Ba(2014)Kingma and Ba]{kingma2014adam}
+Kingma, D.~P. and Ba, J.
+\newblock Adam: A method for stochastic optimization.
+\newblock \emph{arXiv preprint arXiv:1412.6980}, 2014.
+
 \bibitem[Kohavi(1996)]{kohavi1996scaling}
 Kohavi, R.
 \newblock Scaling up the accuracy of naive-bayes classifiers: A decision-tree
   hybrid.
 \newblock In \emph{Kdd}, volume~96, pp.\  202--207. Citeseer, 1996.
+
+\bibitem[Paszke et~al.(2017)Paszke, Gross, Chintala, and
+  Chanan]{paszke2017pytorch}
+Paszke, A., Gross, S., Chintala, S., and Chanan, G.
+\newblock Pytorch: Tensors and dynamic neural networks in python with strong
+  gpu acceleration.
+\newblock \emph{PyTorch: Tensors and dynamic neural networks in Python with
+  strong GPU acceleration}, 6, 2017.
 
 \bibitem[Poplin et~al.(2018)Poplin, Varadarajan, Blumer, Liu, McConnell,
   Corrado, Peng, and Webster]{poplin2018prediction}
