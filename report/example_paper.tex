@@ -183,7 +183,7 @@ Our empirical results are evaluated on the adult income dataset.  We first naive
 
 \subsection{Vanilla Neural Network}
 
-We train a simple neural network with $L = 2$ layers that performs well on the adult income dataset.  The input is $\bd x \setminus \bd z$, the set of all attributes minus sex and race.  The single hidden layer $\bidx h 1$ has 300 hidden units.  We let $\idx f 1$ be the rectified linear (ReLU) function and $\idx f 2$ be the sigmoid function.  Weights and biases $\{\idx W 1, \idx W 2, \idx b 1, \idx b 2\}$ are initialized as $\mathcal{N}(0, 1)$ random variables.  
+We train a simple neural network with $L = 2$ layers that performs well on the adult income dataset.  The input is $\bd x \setminus \bd z$, the set of all attributes minus sex and race.  The single hidden layer $\bidx h 1$ has 64 hidden units.  We let $\idx f 1$ be the rectified linear (ReLU) function and $\idx f 2$ be the sigmoid function.  Weights and biases $\{\idx W 1, \idx W 2, \idx b 1, \idx b 2\}$ are initialized as $\mathcal{N}(0, 1)$ random variables.  
 
 We divide the dataset of $N = 48,4842$ individuals into a training set $\mathcal{D}_\text{train}$ of $26,048$ people and test set $\mathcal{D}_\text{test}$ of $6,513$ people, which roughly corresponds to an 80\%-20\% split.  The network is trained using the binary cross entropy loss function of Equation \ref{bce} on $\mathcal{D}_\text{train}$.  For optimization, we use the ADAM stochastic optimizer \citep{kingma2014adam} with a minibatch of $1024$ examples.  The network is trained for 20 epochs, which are defined as passes through the entire training set.   
 
@@ -200,7 +200,7 @@ This model exhibits significant bias against females, likely because it was trai
 \vskip 0.2in
 \begin{center}
 \centerline{\includegraphics[width=\columnwidth]{img/vanilla-bias.pdf}}
-\caption{For the vanilla neural network, normalized histograms of estimated probabilities that males (left) and females (right) make over 50K a year.  Dotted black lines indicate the means of each distribution, which is 0.298 for males and 0.120 for females.}
+\caption{For the vanilla neural network, normalized histograms of test set estimated probabilities that males (left) and females (right) make over 50K a year.  Dotted black lines indicate the means of each distribution, which is 0.298 for males and 0.120 for females.}
 \label{vanilla-nn}
 \end{center}
 \vskip -0.2in
