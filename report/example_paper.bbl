@@ -1,4 +1,4 @@
-\begin{thebibliography}{11}
+\begin{thebibliography}{13}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -18,6 +18,14 @@ Bobko, P. and Roth, P.~L.
   research and practice.
 \newblock In \emph{Research in personnel and human resources management}, pp.\
   177--198. Emerald Group Publishing Limited, 2004.
+
+\bibitem[Goodfellow et~al.(2014)Goodfellow, Pouget-Abadie, Mirza, Xu,
+  Warde-Farley, Ozair, Courville, and Bengio]{goodfellow2014generative}
+Goodfellow, I., Pouget-Abadie, J., Mirza, M., Xu, B., Warde-Farley, D., Ozair,
+  S., Courville, A., and Bengio, Y.
+\newblock Generative adversarial nets.
+\newblock In \emph{Advances in neural information processing systems}, pp.\
+  2672--2680, 2014.
 
 \bibitem[Goodfellow et~al.(2016)Goodfellow, Bengio, and
   Courville]{goodfellow2016deep}
@@ -74,6 +82,13 @@ Tollenaar, N. and Van~der Heijden, P.
   machine learning and data mining predictive models.
 \newblock \emph{Journal of the Royal Statistical Society: Series A (Statistics
   in Society)}, 176\penalty0 (2):\penalty0 565--584, 2013.
+
+\bibitem[Wadsworth et~al.(2018)Wadsworth, Vera, and
+  Piech]{wadsworth2018achieving}
+Wadsworth, C., Vera, F., and Piech, C.
+\newblock Achieving fairness through adversarial learning: an application to
+  recidivism prediction.
+\newblock \emph{arXiv preprint arXiv:1807.00199}, 2018.
 
 \bibitem[Zafar et~al.(2015)Zafar, Valera, Rodriguez, and
   Gummadi]{zafar2015fairness}
