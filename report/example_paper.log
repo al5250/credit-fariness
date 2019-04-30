@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 APR 2019 22:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015) (preloaded format=pdflatex 2015.5.24)  28 APR 2019 22:43
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -581,12 +581,12 @@ Overfull \hbox (1.77003pt too wide) in paragraph at lines 275--288
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<img/boundary-bias.pdf, id=163, 483.92041pt x 264.6255pt>
+<img/boundary-bias.pdf, id=163, 497.64355pt x 278.34865pt>
 File: img/boundary-bias.pdf Graphic file (type pdf)
 
 <use img/boundary-bias.pdf>
 Package pdftex.def Info: img/boundary-bias.pdf used on input line 294.
-(pdftex.def)             Requested size: 234.8775pt x 128.44011pt.
+(pdftex.def)             Requested size: 234.8775pt x 131.37177pt.
  [4pdfTeX warning (ext4): destination with the same identifier (name{figure.2})
  has been already used, duplicate ignored
 
@@ -619,7 +619,7 @@ Overfull \hbox (13.52222pt too wide) in paragraph at lines 350--350
  []
 
 
-Underfull \vbox (badness 5022) has occurred while \output is active []
+Underfull \vbox (badness 3503) has occurred while \output is active []
 
 Package microtype Info: Loading generic settings for font family
 (microtype)             `cmtt' (encoding: OT1).
@@ -678,7 +678,7 @@ Underfull \hbox (badness 1460) in paragraph at lines 497--504
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [6]
-<icml_numpapers.pdf, id=337, 495.8525pt x 392.46625pt>
+<icml_numpapers.pdf, id=340, 495.8525pt x 392.46625pt>
 File: icml_numpapers.pdf Graphic file (type pdf)
 
 <use icml_numpapers.pdf>
@@ -824,9 +824,9 @@ s/type1/urw/times/utmb8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/ur
 w/times/utmbi8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/u
 tmr8a.pfb></usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmr8a.pfb>
 </usr/local/texlive/2015/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on example_paper.pdf (9 pages, 337052 bytes).
+Output written on example_paper.pdf (9 pages, 337922 bytes).
 PDF statistics:
- 463 PDF objects out of 1000 (max. 8388607)
+ 466 PDF objects out of 1000 (max. 8388607)
  273 compressed objects within 3 object streams
  75 named destinations out of 1000 (max. 500000)
  47642 words of extra memory for PDF output out of 51595 (max. 10000000)
