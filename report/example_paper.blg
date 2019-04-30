@@ -1,55 +1,46 @@
-This is BibTeX, Version 0.99d (TeX Live 2015)
+This is BibTeX, Version 0.99d (TeX Live 2016)
 Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: example_paper.aux
 The style file: icml2019.bst
-Database file #1: example_paper.bib
-Warning--I didn't find a database entry for "langley00"
-Warning--I didn't find a database entry for "anonymous"
-Warning--I didn't find a database entry for "Samuel59"
-Warning--I didn't find a database entry for "kearns89"
-Warning--I didn't find a database entry for "mitchell80"
-Warning--I didn't find a database entry for "MachineLearningI"
-Warning--I didn't find a database entry for "Newell81"
-Warning--I didn't find a database entry for "DudaHart2nd"
-You've used 13 entries,
+Database file #1: example_paper.bib.bib
+You've used 21 entries,
             2773 wiz_defined-function locations,
-            682 strings with 7770 characters,
-and the built_in function-call counts, 6981 in all, are:
-= -- 615
-> -- 460
-< -- 10
-+ -- 154
-- -- 141
-* -- 565
-:= -- 1059
-add.period$ -- 42
-call.type$ -- 13
-change.case$ -- 85
-chr.to.int$ -- 13
-cite$ -- 26
-duplicate$ -- 316
-empty$ -- 525
-format.name$ -- 162
-if$ -- 1480
+            713 strings with 9214 characters,
+and the built_in function-call counts, 11755 in all, are:
+= -- 1049
+> -- 760
+< -- 16
++ -- 255
+- -- 234
+* -- 940
+:= -- 1754
+add.period$ -- 70
+call.type$ -- 21
+change.case$ -- 139
+chr.to.int$ -- 21
+cite$ -- 42
+duplicate$ -- 542
+empty$ -- 890
+format.name$ -- 263
+if$ -- 2523
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 14
-newline$ -- 73
-num.names$ -- 52
-pop$ -- 175
+missing$ -- 22
+newline$ -- 114
+num.names$ -- 84
+pop$ -- 296
 preamble$ -- 1
-purify$ -- 73
+purify$ -- 119
 quote$ -- 0
-skip$ -- 265
+skip$ -- 454
 stack$ -- 0
-substring$ -- 229
-swap$ -- 57
-text.length$ -- 5
+substring$ -- 413
+swap$ -- 118
+text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 138
+type$ -- 226
 warning$ -- 0
-while$ -- 56
+while$ -- 95
 width$ -- 0
-write$ -- 175
-(There were 8 warnings)
+write$ -- 282

@@ -9,6 +9,7 @@
 \usepackage{booktabs} % for professional tables
 \usepackage{amsmath}
 \usepackage{amsfonts}
+\usepackage{float}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\E}{\mathbb{E}}
 \newcommand{\Var}{\mathbb{V}\text{ar}}
@@ -94,6 +95,7 @@
 \printAffiliationsAndNotice{\icmlEqualContribution} % otherwise use the standard text.
 
 \begin{abstract}
+	Machine learning methods are increasingly being used to make decision of large social consequence, including credit scoring and recidivism predictions. Although the predictive power of these models is impressive, the data used to train often contains historical prejudices. This leads to unfair predictions and discrimination based on sensitive attributes such as race or sex. In this paper, we consider two flexible mechanisms to minimize the disparities in predictions between groups. One extends previous literature on fairness constraints, whereas the second uses an adversarial approach to equalize score distributions between groups. We test both methods on the adult income dataset and find that both lead to fair classifiers without sacrificing significant accuracy.
 \end{abstract}
 
 \section{Introduction}
@@ -103,10 +105,20 @@ Over the past few years, machine learning (ML) and artificial intelligence (AI) 
 
 In light of our increased adoption of ML/AI methods, it is important that we do not allow these technologies to foster unfairness within our society.  Machine learning algorithms fundamentally rely on past data in order to function.   They attempt to generalize patterns found in the data and apply these patterns to make predictions in future scenarios.  However, in certain situations, historical injustices against presently protected subgroups of a population may have led to the recording of biased data.  Naively training a model on this biased data may lead to a biased algorithm that discriminates against these protected subgroups.  Subsequently using this algorithm for high-stakes decision making may lead to further injustices and bias the collection of future data, thereby leading to a dangerous positive feedback loop.  
 
-Thus, finding ways to enforce fair predictions for machine learning algorithms is a problem of utmost importance.  In this paper, we propose some methods that strive to achieve this goal.  These methods are primarily optimization-based, meaning that they each involve augmenting the objective function of machine learning methods in some manner and can be seen as a form of regularization.  We employ our methods in neural networks, models that have garnered a great deal of popularity in recent years due to empirical success across many domains.  Our empirical results are presented on the \emph{adult income dataset}\footnote{This dataset is publicly available at \url{https://archive.ics.uci.edu/ml/datasets/adult}.}, which was collected from 1994 census data \citep{kohavi1996scaling}.  We show that our proposed approaches can significantly reduce model bias defined in the form of \emph{disparate impact} and uphold desired levels of \emph{demographic parity} without sacrificing a prohibitive amount of accuracy.             
+Thus, finding ways to enforce fair predictions for machine learning algorithms is a problem of utmost importance.  In this paper, we propose and test some methods that strive to achieve this goal.  These methods are primarily optimization-based, meaning that they each involve augmenting the objective function of machine learning methods in some manner and can be seen as a form of regularization.  We employ our methods in neural networks, models that have garnered a great deal of popularity in recent years due to empirical success across many domains.  Our empirical results are presented on the \emph{adult income dataset}\footnote{This dataset is publicly available at \url{https://archive.ics.uci.edu/ml/datasets/adult}.}, which was collected from 1994 census data \citep{kohavi1996scaling}.  We show that our proposed approaches can significantly reduce model bias defined in the form of \emph{disparate impact} and uphold desired levels of \emph{demographic parity} without sacrificing a prohibitive amount of accuracy.             
 
 \subsection{Related Work}
-Talk about COMPAS, other work in fairness, etc.
+Over the past few years, there has been an increasing focus on satisfying fairness in a machine learning context. The rise of this field corresponded to widespread concern about a model known as COMPAS. Used in the justice system of the United States to forecast recidivism probabilities, the predictions are used by judges to determine whether defendants receive bail, lighter sentences, or even early parole. While the predictive power of the model was impressive, \cite{angwin2016machine} showed that the model has a discriminatory impact on African-American defendants compared to their Caucasian counterparts. 
+
+Within the computer science literature, a number of papers have introduced new fairness criterion to quantitatively measure the differential effects of these machine learning models. For example, \cite{hardt2016equality} argued for equalizing the True Positive and False Positive Rates between protected groups in a metric known as equality of odds. \cite{kusner2017counterfactual} have proposed a more causal definition of fairness known as counterfactual fairness. In a recent review, \cite{narayanan} summarized 21 different definitions of fairness and the social implications of each. In this paper, we focus on one of the first proposed and arguably one of the simplest fairness criteria, known as demographic parity. This definition is particularly interesting due to its legal implications for showing that a model is discriminates.
+
+Similarly, a number of approaches have been developed to minimize the differences between individuals based on race, gender, etc. Some of the earliest strategies involved pre-processing the available data to learn a representation space where the differences are minimized. \cite{dwork2012fairness} and  \cite{feldman2015certifying} utilized such approaches. However, these methods struggled with unpredictable and large losses in accuracy in order to ensure fairness. This paper follows two more recent research directions: introducing constraints and adversarial learning.
+
+Instead of focusing on the inputs, constraint-based learning introduced regularization terms for classifiers to ensure fairness. For example, \cite{kamishima2012fairness} introduced a penalty to correct the training of logistic regression classifiers. More recently, \cite{zafar2015fairness} introduced a generalizable method by penalizing properties of the decision boundary.
+
+Adversarial networks have been utilized by a number of papers to enforce fairness definitions. For example, \cite{beutel2017data} shared hidden layers between various networks to enforce demographic parity. More recently, \cite{wadsworth2018achieving} introduced the setup of a predictor attempting to maximize accuracy and an adversary enforcing fairness.
+
+In this paper, we extend both the methods from \cite{zafar2015fairness} and \cite{wadsworth2018achieving} to create fair classifier that are able to ensure fairness without forsaking significant accuracy.
 
 \section{Background}
 
@@ -177,6 +189,7 @@ Q_1 &= \sum_{n=1}^N \idx y n \log \idx \hp n + (1 - \idx y n) \log (1 - \idx \hp
 where $\lambda$ controls the degree of regularization.  Increasing $\lambda$ will increase the penalty of the covariance and ideally lead to greater demographic parity.  We wish to adjust $\lambda$ so that it is large enough to satisfy fairness constraints, yet small enough to not prohibitively affect classifier accuracy.    
 
 \subsection{Regularizing with Adversarial Networks}
+\label{sec:adversarial} 
 
 Adversarial networks were first introduced by \citet{goodfellow2014generative} in the context of generative adversarial nets, which simulate a minimax two-player game between two neural networks.  The \emph{generator} attempts to create realistic-looking fake images, while the \emph{discriminator} attempts to distinguish real images from fake ones.  The generator is trained so that the discriminator (also known as the \emph{adversary}) performs poorly, which allows the generator to reach an equilibrium in which the distribution of its synthesized images approximates that of the training set. 
 
@@ -248,7 +261,7 @@ Mean predicted probabilities of high-income for the aforementioned sensitive gro
 
 We apply the method described in Section \ref{method1} to correcting disparate impact for the vanilla neural network of Section \ref{vanilla-net}.  In doing so, we keep the same general architecture and training hyperparameters described in the previous section.  However, instead of training the network using normal binary cross-entropy loss $Q_0$  (Equation \ref{bce}), we instead use the regularized objective $Q_1$ that penalizes decision boundary covariance (Equation \ref{penalty-bce}).  
 
-In our experiments, we vary the regularization penalty $\lambda$ to show corresponding effects on the final accuracy and fairness of the neural network classifier.  We try values of $\lambda$ within the set $\{3 \times 10^{-2}, 1 \times 10^{-2}, 3 \times 10^{-3}, 1 \times 10^{-3}, 3 \times 10^{-4}, 1 \times 10^{-4}\}$, which covers approximate increases in factors of three.  
+In our experiments, we vary the regularization penalty $\lambda$ to show corresponding effects on the final accuracy and fairness of the neural network classifier.  We try $\lambda$ within the set $\{3 \times 10^{-2}, 1 \times 10^{-2}, 3 \times 10^{-3}, 1 \times 10^{-3}, 3 \times 10^{-4}, 1 \times 10^{-4}\}$, which covers approximate increases in factors of three.  
 
 Graphs and a table of the results for sex on the training and test sets can be found in Figure \ref{boundary-fig-sex} and Table \ref{boundary-table-sex}, respectively.  We see that choosing a suitable $\lambda$ can satisfy demographic parity without sacrificing significant amounts of accuracy.  Looking at Figure \ref{boundary-fig-sex} and Table \ref{boundary-table-sex}, there is a sharp bend in the curve for $\lambda = 3 \times 10^{-3}$, so this is an appropriate final choice.
 
@@ -266,7 +279,7 @@ Figure \ref{boundary-bias} shows the effect of regularizing the network on align
 \vskip -0.2in
 \end{figure}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \begin{tabular}{c|cc |cc} 
  \hline
@@ -284,7 +297,7 @@ $1 \times 10^{-4}$ & \textbf{0.852} & 0.529 & \textbf{0.850} & 0.547\\
 \caption{Numerical results of how accuracy and level of demographic parity change as functions of regularization parameter $\lambda$ for constraining prediction probabilities conditioned on \emph{sex}.} \label{boundary-table-sex}
 \end{table}
 
-\begin{figure}[ht]
+\begin{figure}[!ht]
 \vskip 0.2in
 \begin{center}
 \centerline{\includegraphics[width=\columnwidth]{img/boundary-tradeoff-race.pdf}}
@@ -294,7 +307,7 @@ $1 \times 10^{-4}$ & \textbf{0.852} & 0.529 & \textbf{0.850} & 0.547\\
 \vskip -0.2in
 \end{figure}
 
-\begin{table}[h]
+\begin{table}[ht]
 \centering
 \begin{tabular}{c|cc |cc} 
  \hline
@@ -322,17 +335,67 @@ $1 \times 10^{-4}$ & \textbf{0.853} & 0.707 & \textbf{0.849} & 0.700\\
 \vskip -0.2in
 \end{figure}
 
-
-  
-
 \subsection{Regularizing with Adversarial Neural Networks}
+Here, we adopt the model explained in section \ref{sec:adversarial}. The predictor model is exactly equivalent to the already vanilla neural network, so after pre-training, the results are equivalent to those described in section \ref{vanilla-net}. The addition of the adversary and continued training leads to improvement in the fairness of the output predictions. In our experiments, we test the adversarial model for various values of $\alpha$ corresponding to how heavily the adversarial loss (ability to predict the sensitive attribute) is weighted with respect to the predictor loss. We test the values of $\alpha$ given in the following set $\{1, 3, 10, 30, 100, 300 \}$. Note that since the adversary $A$ is able to predict all elements of $\bd z$, there is only 1 trial per $\alpha$ value. 
+
+The resulting trends can be seen in Figures \ref{adv_fig_sex} and \ref{adv_fig_race}, with the statistics presented in Table \ref{adv-table}. Neither figure has as clear of a sharp bend as the figures for the previous method. Nevertheless, $\alpha=30$ appears to be a decent trade-off for both cases. For this value of $\alpha$, the resulting prediction distributions are seen in Figure \ref{adv-bias}. This graph is significantly different from \ref{vanilla-nn} and shows significant improvement in equalizing the score distributions between individuals of different races or sexes. 
+
+\begin{figure}[ht]
+	\vskip 0.2in
+	\begin{center}
+		\centerline{\includegraphics[width=\columnwidth]{img/adv_levels_sex.png}}
+		\caption{Tradeoff between overall neural network accuracy and level of demographic parity for \emph{sex} by varying weight on adversarial loss $\alpha$. Results are given on the training set (left) and the test set (right).}
+		\label{adv_fig_sex}
+	\end{center}
+	\vskip -0.2in
+\end{figure}
+
+\begin{figure}[ht]
+	\vskip 0.2in
+	\begin{center}
+		\centerline{\includegraphics[width=\columnwidth]{img/adv_levels_race.png}}
+		\caption{Tradeoff between overall neural network accuracy and level of demographic parity for \emph{race} by varying weight on adversarial loss $\alpha$. Results are given on the training set (left) and the test set (right).}
+		\label{adv_fig_race}
+	\end{center}
+	\vskip -0.2in
+\end{figure}
+
+\begin{table}[!ht]
+	\centering
+	\begin{tabular}{c|ccc |ccc} 
+		\hline
+		\hline
+		$\alpha$ & \shortstack{Train \\ Acc}  & \shortstack{Train  $q$ \\ Race} & \shortstack{Train  $q$ \\ Sex} & \shortstack{Test \\ Acc} & \shortstack{Test $q$ \\ Race} & \shortstack{Test $q$ \\ Sex} \\ 
+		\hline
+		300 & 0.803 & 0.969 & 0.964 & 0.788 & \textbf{0.967} & 0.963 \\ 
+		100 & 0.829 & \textbf{0.989} & \textbf{0.978} & 0.805 & 0.955 & 0.977 \\
+		30 & 0.843 & 0.932 & 0.966 & 0.822 & 0.943 & \textbf{0.994} \\
+		10 & 0.854 & 0.860 & 0.797 & 0.824 & 0.850 & 0.880 \\
+		3 & 0.868 & 0.701 & 0.572 & 0.842 & 0.683 & 0.575 \\ 
+		1 & \textbf{0.873} & 0.613 & 0.418 & \textbf{0.855} & 0.624 & 0.408 \\
+		\hline
+	\end{tabular}
+	\caption{Numerical results of how accuracy and level of demographic parity change as functions of regularization parameter $\alpha$ for adversarial models.} 
+	\label{adv-table}
+\end{table}
+
+\begin{figure}[ht]
+	\vskip 0.2in
+	\begin{center}
+		\centerline{\includegraphics[width=\columnwidth]{img/adv_end.png}}
+		\caption{For the adversarial neural network approach, fitted kernel density estimations of test set estimated probabilities that different races (left) and different sexes (right) make over 50K a year.  Dotted lines indicate the means of each distribution.}
+		\label{adv-bias}
+	\end{center}
+	\vskip -0.1in
+\end{figure}
 
 \section{Discussion and Conclusion}
+From the results, both methods clearly show significant progress in improving the demographic parity relative to the vanilla neural network model. The plots showing the score distributions highlight how the predictions for different races or sexes are similar after the application of these methods. Furthermore, using the statistics from the tables, it is clear that the methods achieve the $q \geq 0.8$ that is important from a legal context to create defensible models.
 
-\bibliography{example_paper}
+In light of these results, there are many directions for future work. First, one could test these results on real-world datasets to explore how effective these methods are. Furthermore, the results from this paper are generally empirical. Both methods were able to improve $q$ scores without forsaking significant accuracy. It would be interesting to provide theoretical bounds for when this method will work and bound the loss in accuracy to achieve demographic parity. Finally, as mentioned in the introduction, demographic parity is only one definition of fairness of the more than twenty within literature. Further work could test the impact of these methods on other definition and explore if they can be extended to meet multiple definitions of fairness.
+
 \bibliographystyle{icml2019}
-
-
+\bibliography{example_paper.bib}
 
 \end{document}
 
