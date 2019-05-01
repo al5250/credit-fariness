@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  30 APR 2019 20:27
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.5.22)  30 APR 2019 20:35
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -590,14 +590,14 @@ pdf): PDF inclusion: multiple pdfs with page group included in a single page
 
 pdfTeX warning: /Library/TeX/texbin/pdflatex (file ./img/boundary-tradeoff-race
 .pdf): PDF inclusion: multiple pdfs with page group included in a single page
->] <img/adv_levels_sex.png, id=335, 621.32124pt x 334.24875pt>
+>] <img/adv_levels_sex.png, id=337, 621.32124pt x 334.24875pt>
 File: img/adv_levels_sex.png Graphic file (type png)
 
 <use img/adv_levels_sex.png>
 Package pdftex.def Info: img/adv_levels_sex.png used on input line 346.
 (pdftex.def)             Requested size: 234.8775pt x 126.35281pt.
 
-<img/adv_levels_race.png, id=337, 621.32124pt x 334.24875pt>
+<img/adv_levels_race.png, id=339, 621.32124pt x 334.24875pt>
 File: img/adv_levels_race.png Graphic file (type png)
 
 <use img/adv_levels_race.png>
@@ -608,7 +608,7 @@ Overfull \hbox (14.07321pt too wide) in paragraph at lines 365--378
  [][] 
  []
 
-<img/adv_end.png, id=338, 570.13pt x 281.05pt>
+<img/adv_end.png, id=340, 570.13pt x 281.05pt>
 File: img/adv_end.png Graphic file (type png)
  <use img/adv_end.png>
 Package pdftex.def Info: img/adv_end.png used on input line 385.
@@ -633,10 +633,10 @@ LaTeX Warning: There were multiply-defined labels.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 400.
  ) 
 Here is how much of TeX's memory you used:
- 9093 strings out of 493014
- 135728 string characters out of 6133351
- 274768 words of memory out of 5000000
- 12162 multiletter control sequences out of 15000+600000
+ 9097 strings out of 493014
+ 135813 string characters out of 6133351
+ 275143 words of memory out of 5000000
+ 12165 multiletter control sequences out of 15000+600000
  44468 words of font info for 228 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  33i,14n,45p,1123b,470s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -657,10 +657,10 @@ ist/fonts/type1/urw/times/utmb8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/
 type1/urw/times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/
 times/utmr8a.pfb></usr/local/texlive/2016/texmf-dist/fonts/type1/urw/times/utmr
 i8a.pfb>
-Output written on example_paper.pdf (8 pages, 331518 bytes).
+Output written on example_paper.pdf (8 pages, 332837 bytes).
 PDF statistics:
- 473 PDF objects out of 1000 (max. 8388607)
- 284 compressed objects within 3 object streams
- 68 named destinations out of 1000 (max. 500000)
+ 478 PDF objects out of 1000 (max. 8388607)
+ 289 compressed objects within 3 object streams
+ 69 named destinations out of 1000 (max. 500000)
  32804 words of extra memory for PDF output out of 35830 (max. 10000000)
 

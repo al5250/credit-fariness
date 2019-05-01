@@ -1,4 +1,4 @@
-\begin{thebibliography}{21}
+\begin{thebibliography}{22}
 \providecommand{\natexlab}[1]{#1}
 \providecommand{\url}[1]{\texttt{#1}}
 \expandafter\ifx\csname urlstyle\endcsname\relax
@@ -136,6 +136,12 @@ Tollenaar, N. and Van~der Heijden, P.
   machine learning and data mining predictive models.
 \newblock \emph{Journal of the Royal Statistical Society: Series A (Statistics
   in Society)}, 176\penalty0 (2):\penalty0 565--584, 2013.
+
+\bibitem[Tonk(2018)]{fairness-in-ml}
+Tonk, S.
+\newblock Fairness in machine learning.
+\newblock 2018.
+\newblock \url{https://github.com/equialgo/fairness-in-ml}.
 
 \bibitem[Wadsworth et~al.(2018)Wadsworth, Vera, and
   Piech]{wadsworth2018achieving}

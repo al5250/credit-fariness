@@ -3,44 +3,46 @@ Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
 The top-level auxiliary file: example_paper.aux
 The style file: icml2019.bst
 Database file #1: example_paper.bib.bib
-You've used 21 entries,
+Warning--empty journal in fairness-in-ml
+You've used 22 entries,
             2773 wiz_defined-function locations,
-            713 strings with 9214 characters,
-and the built_in function-call counts, 11755 in all, are:
-= -- 1049
-> -- 760
-< -- 16
-+ -- 255
-- -- 234
-* -- 940
-:= -- 1754
-add.period$ -- 70
-call.type$ -- 21
-change.case$ -- 139
-chr.to.int$ -- 21
-cite$ -- 42
-duplicate$ -- 542
-empty$ -- 890
-format.name$ -- 263
-if$ -- 2523
+            718 strings with 9320 characters,
+and the built_in function-call counts, 12061 in all, are:
+= -- 1076
+> -- 770
+< -- 17
++ -- 259
+- -- 237
+* -- 955
+:= -- 1804
+add.period$ -- 74
+call.type$ -- 22
+change.case$ -- 143
+chr.to.int$ -- 22
+cite$ -- 45
+duplicate$ -- 561
+empty$ -- 920
+format.name$ -- 267
+if$ -- 2586
 int.to.chr$ -- 1
 int.to.str$ -- 1
-missing$ -- 22
-newline$ -- 114
-num.names$ -- 84
-pop$ -- 296
+missing$ -- 23
+newline$ -- 120
+num.names$ -- 88
+pop$ -- 306
 preamble$ -- 1
-purify$ -- 119
+purify$ -- 122
 quote$ -- 0
-skip$ -- 454
+skip$ -- 467
 stack$ -- 0
-substring$ -- 413
+substring$ -- 415
 swap$ -- 118
 text.length$ -- 10
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 226
-warning$ -- 0
-while$ -- 95
+type$ -- 237
+warning$ -- 1
+while$ -- 98
 width$ -- 0
-write$ -- 282
+write$ -- 295
+(There was 1 warning)
